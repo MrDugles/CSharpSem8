@@ -95,7 +95,7 @@ int[,] SortArray(int[,] thisArr)
             for (int j = 0; j < cols-1; j++)
             {
                 int num = thisArr[row, j];
-                if (temp < num)
+                if (temp > num)
                 {
                     temp = thisArr[row, i];
                     thisArr[row, i] = thisArr[row, j];
