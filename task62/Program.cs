@@ -5,49 +5,45 @@
 // 11 16 15 06
 // 10 09 08 07
 
-
-
-Console.Clear();
-Console.WriteLine($"Задача 62: Заполните спирально массив 4 на 4.");
-Console.WriteLine();
-
-int n = 9;
-int[,] sqareMatrix = new int[n, n];
-
-int cell = 1;
-int row = 0;
-int col = 0;
-int rows = sqareMatrix.GetLength(0);
-int cols = sqareMatrix.GetLength(1);
-while (cell <= rows * cols)
+int[,] GetArray(int size)
 {
-    sqareMatrix[row, col] = cell;
-    cell++;
-    if (row <= col + 1 && row + col < cols - 1)
-        col++;
-    else if (row < col && row + col >= rows - 1)
-        row++;
-    else if (row >= col && row + col > cols - 1)
-        col--;
-    else
-        row--;
+    int cell = 1;
+    int row = 0;
+    int col = 0;
+    int[,] newArr = new int[size, size];
+    while (cell <= size * size)
+    {
+        newArr[row, col] = cell;
+        cell++;
+        if (row <= col + 1 && row + col < size - 1)
+            col++;
+        else if (row < col && row + col >= size - 1)
+            row++;
+        else if (row >= col && row + col > size - 1)
+            col--;
+        else
+            row--;
+    }
+    return newArr;
 }
 
-WriteArray(sqareMatrix);
-
-void WriteArray(int[,] array)
+void PrintArray(int[,] thisArr)
 {
-    int rows = array.GetLength(0);
-    int cols = array.GetLength(1);
+    int rows = thisArr.GetLength(0);
+    int cols = thisArr.GetLength(1);
+    Console.Clear();
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
-            if (array[i, j] < 10)
-                Console.Write("{0,3}", "0" + array[i, j]);
+            if (thisArr[i, j] < 10)
+                Console.Write("{0,3}", "0" + thisArr[i, j]);
             else
-                Console.Write("{0,3}", array[i, j]);
+                Console.Write("{0,3}", thisArr[i, j]);
         }
         Console.WriteLine();
     }
 }
+
+int[,] newArray = GetArray(4);
+PrintArray(newArray);
